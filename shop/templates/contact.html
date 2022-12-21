@@ -1,0 +1,86 @@
+{% extends 'basic.html' %}
+
+{% block title%}Contact Us{%endblock%}
+{% block body%}
+<div class="card container mb-3"><br>
+    <h1 style="font-weight:200;">Contact Us</h1><br>
+    <div class="container">
+        <div class="row">
+            <div class="col-6">
+                <p style="color: red; font-size:12px; ">You must be logged in to submit this form. If you are logged in
+                    and still cannot
+                    post, make sure "Do Not Track" in your browser settings is disabled</p>
+                <form action="/contact" method="post">
+                    {% csrf_token %}
+                    <div class="row">
+                        <div class="col">
+                            <label class="form-label">Name</label>
+                            <input type="text" required class="form-control" placeholder="Name*" name="name">
+                        </div>
+                        <div class="col">
+                            <label class="form-label">Phone</label>
+                            <input type="number" required class="form-control" placeholder="Phone*" name="phone">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col">
+                            <label class="form-label">Email</label>
+                            <input type="email" class="form-control" placeholder="Email*" name="email">
+                        </div>
+                        <div class="col">
+                            <label class="form-label">Subject</label>
+                            <input type="text" class="form-control" placeholder="Subject*" name="subject">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col">
+                            <label class="form-label">Message</label>
+                            <input type="textfield" class="form-control" placeholder="Message*" name="message">
+                        </div>
+                    </div><br>
+                    {% if user.is_authenticated %}
+                    <button type="submit" class="btn btn-outline-primary">Submit</button>
+                    {% else %}
+                    <p><button type="button" class="btn btn-outline-primary" data-bs-toggle="collapse"
+                            data-bs-target="#collapseExample" aria-expanded="false"
+                            aria-controls="collapseExample">Submit</button></p>
+                    <div class="collapse" id="collapseExample">
+                        <div class="card card-body">
+                            Kindly Login to submit the form.
+                        </div>
+                    </div>
+                    {% endif %}
+                    {% for message in messages %}
+                    <h3 class="alert alert-primary" role="alert">{{message}}</h3>
+                    {% endfor %}
+                    <br><br>
+                </form>
+            </div>
+            <div class="col-6">
+
+                <div>
+
+                    <a
+                        href="https://www.google.co.in/maps/place/Dream+Decor/@38.6733917,-121.7966542,17z/data=!4m6!3m5!1s0x8084d1ce4fa2a39b:0xd9154fffb5489f30!8m2!3d38.6733875!4d-121.7944655!16s%2Fg%2F11g2ysbmsg">
+                        <img src="/media/shop/images/map.jpeg" style="width: auto;height: 300px;">
+                    </a>
+                    <a href="https://www.google.co.in/maps/place/Dream+Decor/@38.6733917,-121.7966542,17z/data=!4m6!3m5!1s0x8084d1ce4fa2a39b:0xd9154fffb5489f30!8m2!3d38.6733875!4d-121.7944655!16s%2Fg%2F11g2ysbmsg"
+                        class="btn btn-outline-info" type=button style="margin: -600px 0px 0px 0px ;">View Large Map</a>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <p style="font-size:16px;color:red;"><b>Springfield</b></p>
+                        <p style="font-size:13px;">756 State St, Springfield, MA 01109
+                            (413) 747-0300</p>
+                    </div>
+                    <div class="col">
+                        <p style="font-size:16px;color:red;"><b>West Springfield</b></p>
+                        <p style="font-size:13px;">120 Memorial Ave, West Springfield, MA 01089
+                            (413) 304-4696</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{%endblock%}

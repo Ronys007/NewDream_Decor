@@ -1,0 +1,35 @@
+{% extends 'basic.html' %}
+
+{% block title%}Login{%endblock%}
+
+
+{% block body%}
+<div style="padding:30px;">
+    <div class="card p-3 mx-auto" style="width: 350px;">
+        <h3 style="font-weight:200;text-align:center;">Login Your Account</h3><br>
+
+        <form action="login" method="post">
+            {% csrf_token %}
+            <div class="mb-3">
+                <label class="form-label">Username</label>
+                <input type="text" class="form-control" name="username" placeholder="*Username" style="width: 300px;">
+                <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Password</label>
+                <input type="password" class="form-control" name="password" placeholder="*Password"
+                    style="width: 300px;">
+            </div>
+            <button type="submit" class="btn btn-outline-primary">Submit</button>
+            <a type="submit" class="btn btn-outline-primary" href="/signup">Register Your Account</a>
+        </form>
+        <br><br>
+        <div>
+            {% for message in messages %}
+            <h3>{{message}}</h3>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+
+{% endblock %}

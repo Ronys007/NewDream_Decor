@@ -1,0 +1,37 @@
+{% extends 'basic.html'%}
+
+{% block title %} {{product.product_name}} {% endblock %}
+
+{% block body%}
+
+{% for i in product %}
+<div class="container" style="padding:30px;">
+    <div class="row">
+        <div class="col">
+            <a href="{{i.image.url}}"><img src="{{i.image.url}}" class="card-img-top"
+                    style="height: 450px;width:auto;padding:20px;border:solid 1px #f9f9f9;" alt="..."></a>
+        </div>
+        <div class="col py-3">
+            <div class="card" style="border:solid 1px #f9f9f9">
+                <h5 class="card-header">{{i.product_name}}</h5>
+                <div class="card-body">
+                    <h5 class="card-title">${{i.price}} USD</h5><br>
+                    <form action="{% url "cart_add" i.id %}" method="post">
+                        {{ cart_product_form }}
+                        {% csrf_token %}<br><br>
+                        <input type="submit" class="btn btn-outline-primary col-lg-6" value="Add To Cart">
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div><br>
+    <div class="card p-3" style="border:solid 1px #f9f9f9">
+        <h5 class="card-title">Description</h5>
+        <p class="card-text">{{i.desc| linebreaks}}</p>
+        <p class="card-text">Free Shipping</p>
+        <p class="card-text">Hassle-Free Exchanges</p>
+    </div>
+</div>
+{% endfor %}
+
+{% endblock %}

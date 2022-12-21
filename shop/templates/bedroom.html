@@ -1,0 +1,54 @@
+{% extends 'basic.html' %}
+
+{% block title%}Bedroom{%endblock%}
+
+{% block body%}
+
+{%load static%}
+
+<div class="col">
+    <div style="padding:30px;">
+        <div class="row">
+            <h1 style="font-weight:200;" class="col-6">Bedroom</h1>
+
+            <div class="dropdown col-6 text-end">
+                <button class="btn btn-primary dropdown-toggle" type="button" data-bs-toggle="dropdown"
+                    aria-expanded="false">
+                    Price
+                </button>
+                <ul class="dropdown-menu">
+                    <li><a class="dropdown-item btn btn-primary" type="submit" name="under" value="under" href="#">Under
+                            $500</a></li>
+                    <li><a class="dropdown-item btn btn-primary" type="submit" name="bw" value="bw"
+                            href="#">$500-$1000</a></li>
+                    <li><a class="dropdown-item btn btn-primary" type="submit" name="above" value="above"
+                            href="#">$1000-$2000</a></li>
+                </ul>
+            </div>
+        </div>
+        <br><br>
+
+        <div style="display: flex; flex-direction: row; flex-wrap: wrap">
+
+            {%for i in product%}
+
+            <div class="card " style="width: 18rem; margin: 10px;">
+                <img src="{{i.image.url}}" class="card-img-top" style="height: 200px; width:auto;" alt="...">
+                <div class="card-body" style="height:auto;"><br>
+                    <a class="card-title" style="font-size:12px; text-decoration:none;"
+                        href="/product/{{i.id}}">{{i.product_name}}</a>
+                    <p class="card-text" style="font-size:12px;">{{i.desc|slice:":60"}}...</p>
+                    <a href="/product/{{i.id}}" type="submit" class="btn btn-outline-primary"
+                        style="font-size:12px;">Read More</a>
+
+                </div>
+            </div>
+            {%endfor%}
+        </div>
+
+    </div>
+
+</div>
+</div>
+
+{% endblock %}

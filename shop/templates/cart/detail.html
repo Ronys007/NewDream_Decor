@@ -1,0 +1,167 @@
+{% extends 'basic.html' %}
+
+{% block title%}Shopping Cart{%endblock%}
+{% block body%}
+{% load static %}
+<div class="container"><br>
+    <h1 style="font-weight:200;">Shopping Cart</h1><br>
+    <div class="table-responsive-lg">
+        <table class="table  table-bordered border-dark table-hover">
+            <thead>
+                <tr>
+                    <th scope="col">Serial no.</th>
+                    <th scope="col">Image</th>
+                    <th scope="col">Product</th>
+                    <th scope="col">Quantity</th>
+                    <th scope="col">Remove</th>
+                    <th scope="col">Unit Price</th>
+                    <th scope="col">Price</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for item in cart %}
+                {% with product=item.product %}
+                <tr>
+                    <th scope="row">{{forloop.counter}}</th>
+                    <td>
+                        <a href="{{product.get_absolute_url}}">
+                            <img src="{% if product.image %} {{product.image.url}}
+                               {% else %}{% static "img/no_image.png" %}{% endif%} " style=" width:50px; height:50px;"
+                                class="rounded">
+                        </a>
+                    </td>
+                    <td>{{ product.product_name }}</td>
+                    <td>
+                        <form action="{% url "cart_add" product.id %}" method="post">
+                            {% csrf_token %}
+                            {{item.update_quantity_form.quantity}}
+                            {{item.update_quantity_form.override}}
+                            <input type="submit" value="add">
+                        </form>
+                    </td>
+                    <td>
+                        <form action=" {% url "cart_remove" product.id %}" method="post">
+                            <input type="submit" value="Remove">
+                            {% csrf_token %}
+
+                        </form>
+                    </td>
+                    <td class="num">${{item.price}}</td>
+                    <td class="num">${{item.total_price}}</td>
+                </tr>
+                {% endwith %}
+                {% endfor %}
+                <tr class="table-dark">
+                    <td colspan="5"></td>
+                    <td class="table-dark">Total Price</td>
+                    <td class="num">${{cart.get_total_price}}</td>
+
+                </tr>
+            </tbody>
+
+        </table>
+
+        <p class="text-end">
+            <a href="/newarrival" type="button" class="btn btn-outline-primary">Continue Shopping</a>
+            <button data-bs-toggle="modal" data-bs-target="#exampleModal" type="button"
+                class="btn btn-outline-primary">Check Out</button>
+        </p>
+        {% for message in messages %}
+        <h3 class="alert alert-primary" role="alert">{{message}}</h3>
+        {% endfor %}
+    </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header" style="color:white; background-color:black;">
+                <h5 class="modal-title fs-5" id="exampleModalLabel">Check Out Form</h5>
+                <hr>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body" style="background-color:aquamarine;">
+                <div class="m-2 p-3">
+                    <form action="checkout" , method="POST">
+                        {% csrf_token %}
+                        <div class="form-group">
+                            <label for="">Name</label>
+                            <input type="text" name="name" required class="form-control" placeholder=""
+                                aria-describedby="helpId">
+                        </div>
+                        <div class="form-group">
+                            <label for="">Email</label>
+                            <input type="email" name="email" required class="form-control" placeholder=""
+                                aria-describedby="helpId">
+                        </div>
+                        <div class="form-group">
+                            <label for="">Phone</label>
+                            <input type="number" name="phone" required class="form-control" placeholder=""
+                                aria-describedby="helpId">
+                        </div>
+                        <div class="form-group">
+                            <label for="">Address</label>
+                            <input type="text" name="address" required class="form-control" placeholder=""
+                                aria-describedby="helpId">
+                        </div>
+                        <div class="form-group">
+                            <label for="">City</label>
+                            <input type="city" name="city" required class="form-control" placeholder=""
+                                aria-describedby="helpId">
+                        </div>
+                        <div class="form-group">
+                            <label for="">State</label>
+                            <input type="city" name="state" required class="form-control" placeholder=""
+                                aria-describedby="helpId">
+                        </div>
+                        <div class="form-group">
+                            <label for="">Country</label>
+                            <input type="city" name="country" required class="form-control" placeholder=""
+                                aria-describedby="helpId">
+                        </div>
+                        <div class="form-group">
+                            <label for="">Zip Code</label>
+                            <input type="number" name="zip_code" required class="form-control" placeholder=""
+                                aria-describedby="helpId">
+                        </div>
+                        <br>
+                        <input type="hidden" value="Offline" name="payment_mode">
+                        <button type="submit" class="btn btn-primary btn-lg col-12 mb-2 ">Pay Offline</button>
+                        <div id="paypal-button-container"></div>
+                        <script src="https://www.paypal.com/sdk/js?client-id=AY4UfSai_p2RCyo-olaiipTHRE93EuPvOUQto4Bf6pKE1KPtVjIE46VdoxXTzQT_HmhLzVCAE9uq71_P&currency=USD"></script>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    paypal.Buttons({
+      // Sets up the transaction when a payment button is clicked
+      createOrder: (data, actions) => {
+        return actions.order.create({
+          purchase_units: [{
+            amount: {
+              value: '{{cart.get_total_price}}' // Can also reference a variable or function
+            }
+          }]
+        });
+      },
+      // Finalize the transaction after payer approval
+      onApprove: (data, actions) => {
+        return actions.order.capture().then(function(orderData) {
+          // Successful capture! For dev/demo purposes:
+          console.log('Capture result', orderData, JSON.stringify(orderData, null, 2));
+          const transaction = orderData.purchase_units[0].payments.captures[0];
+          alert(`Transaction ${transaction.status}: ${transaction.id}\n\nSee console for all available details`);
+          // When ready to go live, remove the alert and show a success message within this page. For example:
+          // const element = document.getElementById('paypal-button-container');
+          // element.innerHTML = '<h3>Thank you for your payment!</h3>';
+          // Or go to another URL:  actions.redirect('thank_you.html');
+        });
+      }
+    }).render('#paypal-button-container');
+  </script>
+{% endblock %}

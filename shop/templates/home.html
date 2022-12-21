@@ -1,0 +1,193 @@
+{% extends 'basic.html' %}
+
+{% block title%}Dream Decor{%endblock%}
+
+{% block css %}
+.w-100 {
+width: 100% !important;
+height: 75vh;}
+{% endblock %}
+
+{% block body%}
+<!-- coursel -->
+
+<div class="row">
+    <div id="carouselExampleDark" class="carousel carousel-dark slide col-sm-7 p-3" data-bs-ride="true">
+        <div class="carousel-indicators">
+            <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="0" class="active"
+                aria-current="true" aria-label="Slide 1"></button>
+            <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="1"
+                aria-label="Slide 2"></button>
+            <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="2"
+                aria-label="Slide 3"></button>
+        </div>
+        <div class="carousel-inner" style="max-width:49rem;min-width:25rem;">
+            <div class="carousel-item active" data-bs-interval="2000">
+                <img src="/media/shop/images/head-1.jpg" class="d-block w-100 rounded" alt="...">
+
+            </div>
+            <div class="carousel-item" data-bs-interval="2000">
+                <img src="/media/shop/images/head-2.jpg" class="d-block w-100 rounded" alt="...">
+
+            </div>
+            <div class="carousel-item">
+                <img src="/media/shop/images/head-3.jpg" class="d-block w-100 rounded" alt="...">
+
+            </div>
+        </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleDark" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleDark" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+        </button>
+    </div>
+    <div class="col-sm-5 rounded">
+        <div class="row bg-danger rounded my-3 "
+            style="max-width:560px;min-height:auto;height:250px;min-width:auto; --bs-bg-opacity:.25">
+            <div class="col-6 p-3">
+                <p class="text-danger fs-5">Instant Delivery.<br> Instant Joy.</p>
+                <p class="text-dark fs-3">Send Gift</p>
+            </div>
+            <div class="col-6">
+                <img src="/media/shop/images/head-3.jpg" class="rounded float-end m-3 py-3" alt="..."
+                    style="max-width:250px;max-height:250px;min-width:180px;">
+            </div>
+        </div>
+        <div class="row bg-danger rounded my-3 "
+            style="max-width:560px;min-height:auto;height:250px;min-width:auto; --bs-bg-opacity:.25">
+            <div class="col-6 p-3">
+                <p class="text-danger  fs-5">Unique Designs.<br>Home Decor.</p>
+                <p class="text-dark fs-3"><b>Bedroom</b> Mirrors</p>
+            </div>
+            <div class="col-6">
+                <img src="/media/shop/images/MIrror.jpg" class="rounded float-end m-3 py-3 " alt="..."
+                    style="max-width:250px;max-height:250px;min-width:180px;">
+            </div>
+        </div>
+    </div>
+
+    <!-- mid-body -->
+    <div class="row mx-1">
+        <div class="row bg-danger rounded my-3 mx-1 "
+            style="max-width:441px;min-height:auto;height:250px;min-width:auto; --bs-bg-opacity:.25">
+            <div class="col-6 p-3">
+                <p class="text-danger fs-5">Unique Designs.<br>Home Decor.</p>
+                <p class="text-dark  fs-4"><b>Matresses</b></p>
+            </div>
+            <div class="col-6">
+                <img src="/media/shop/images/Matress.png" class="rounded float-end m-1 py-3 " alt="..."
+                    style="max-width:250px;max-height:250px;min-width:130px;">
+            </div>
+        </div>
+        <div class="row bg-danger rounded my-3 mx-1 "
+            style="max-width:441px;min-height:auto;height:250px;min-width:auto; --bs-bg-opacity:.25">
+            <div class="col-6 p-3">
+                <p class="text-danger fs-5">Unique Designs.<br>Home Decor.</p>
+                <p class="text-dark  fs-4"><b>Dining Room</b> Bar stool and Table</p>
+            </div>
+            <div class="col-6">
+                <img src="/media/shop/images/DiningRoom Bar.png" class="rounded float-end m-1 py-3 " alt="..."
+                    style="max-width:250px;max-height:250px;min-width:130px;">
+            </div>
+        </div>
+        <div class="row bg-danger rounded my-3 mx-1 "
+            style="max-width:441px;min-height:auto;height:250px;min-width:auto; --bs-bg-opacity:.25">
+            <div class="col-6 p-3">
+                <p class="text-danger fs-5">Unique Designs.<br>Home Decor.</p>
+                <p class="text-dark  fs-4"><b>Pillow</b> Livah Pillow</p>
+            </div>
+            <div class="col-6">
+                <img src="/media/shop/images/pillow.png" class="rounded float-end m-1 py-3 " alt="..."
+                    style="max-width:250px;max-height:250px;min-width:130px;">
+            </div>
+        </div>
+    </div>
+    <div>
+        <p class="fs-3 text-center"><b>Shop By Department</b></p>
+        <div class="row navbar text-center">
+            <a class="col nav-link btn btn-outline-danger" href="">Living Room</a>
+            <a class="col nav-link btn btn-outline-danger" href="">Bedroom</a>
+            <a class="col nav-link btn btn-outline-danger" href="">Mattresses</a>
+            <a class="col nav-link btn btn-outline-danger" href="">Dining Room</a>
+            <a class="col nav-link btn btn-outline-danger" href="">Accents</a>
+            <a class="col nav-link btn btn-outline-danger" href="">Office</a>
+            <a class="col nav-link btn btn-outline-danger" href="">Kids</a>
+            <a class="col nav-link btn btn-outline-danger" href="">Entertainment</a>
+            <a class="col nav-link btn btn-outline-danger" href="">Outdoor</a>
+        </div>
+    </div>
+    <div class="row my-3">
+        <p class="fs-6 text-center col-3 card p-3 bg-info"><b class="fs-5">Unbeatable Selection
+            </b>All things home, all in one place.</p>
+        <p class="fs-6 text-center col-3 card p-3 bg-info"><b class="fs-5">Expert Customer Service
+            </b>Our friendly team's on hand seven days a week.</p>
+        <p class="fs-6 text-center col-3 card p-3 bg-info"><b class="fs-5">Fast & Free Shipping Over $35*
+            </b>Plus, two-day delivery on thousands of items.</p>
+        <p class="fs-6 text-center col-3 card p-3 bg-info"><b class="fs-5">Amazing Value Every Day
+            </b>Items you love at prices that fit your budget.</p>
+
+    </div>
+    <div style="padding:30px;">
+        <h1 style="font-weight:200;" class="card bg-danger text-center text-white"><b>Dining Room</b></h1>
+        <br><br>
+    
+        <div style="display: flex; flex-direction: row; flex-wrap: wrap">
+            {%for i in product%}
+    
+            <div class="row">
+                <div class="col-sm-3">
+                    <div class="card" style="width: 18rem; margin: 10px;">
+                        <img src="{{i.image.url}}" class="card-img-top" style="height: 200px; width:auto;"
+                            alt="...">
+                        <div class="card-body" style="height:auto;"><br>
+                            <a class="card-title" style="font-size:10px; text-decoration:none;"
+                                href="/product/{{i.id}}">{{i.product_name}}</a>
+                                
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {%endfor%}
+        </div>
+    </div>
+
+
+    <div class="container-fluid" style="padding:35px 35px 35px 35px;">
+        <div class="row">
+            <ul class="col">
+                <h1 style="font-weight:100;font-size:35px;color:red;">CONNECT WITH US!</h1>
+            </ul>
+            <ul class="col">
+                <p>Keep in touch with us via our social platforms on <br>Instagram, Facebook, Pinterest, and YouTube.
+                </p>
+            </ul>
+            <ul class="col"><img src="/media/shop/images/socialimg.png" style="max-width:200px;">
+            </ul>
+        </div>
+    </div>
+
+    <!--images-->
+    <div class="container">
+        <p class="fs-6 text-center"><b class="fs-3">Dream Decor Finds in Every Style</b><br>
+            Create a space that’s all you on any budget.</p>
+        <div class="row">
+            <div class="col-3 align-self-start card p-3">
+                <img src="/media/shop/images/bedroom.png" class=" p-2" style="width:100%; height:300px;">
+            </div>
+            <div class="col-3 align-self-start card p-3">
+                <img src="/media/shop/images/living_room.png" class=" p-2" style="width:100%; height:300px;">
+            </div>
+            <div class="col-3 align-self-start card p-3">
+                <img src="/media/shop/images/sofa.png" class=" p-2" style="width:100%; height:300px;">
+            </div>
+            <div class="col-3 align-self-start card p-3">
+                <img src="/media/shop/images/img3.jpeg" class=" p-2" style="width:100%; height:300px;">
+            </div>
+        </div>
+    </div>
+
+
+    {% endblock%}
